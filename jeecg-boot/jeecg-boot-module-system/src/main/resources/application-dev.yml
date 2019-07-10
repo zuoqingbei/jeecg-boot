@@ -1,7 +1,7 @@
 server:
   port: 8080
   servlet:
-    context-path: /jeecg-boot
+    context-path: /hlsofttech
     compression:
       enabled: true
       mime-types: application/javascript,application/json,application/xml,text/html,text/xml,text/plain,text/css,image/*
@@ -63,7 +63,7 @@ spring:
       stat-view-servlet:
         enabled: true
         loginUsername: admin
-        loginPassword: 123456
+        loginPassword: admin
       web-stat-filter:
         enabled: true
     dynamic:
@@ -92,9 +92,9 @@ spring:
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       datasource:
         master:
-          url: jdbc:mysql://127.0.0.1:3306/jeecg-boot?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+          url: jdbc:mysql://114.115.212.175:3306/jeecg_boot?characterEncoding=UTF-8&useUnicode=true&useSSL=false
           username: root
-          password: root
+          password: Hailian8765QD@
           driver-class-name: com.mysql.jdbc.Driver
           # 多数据源配置
           #multi-datasource1:

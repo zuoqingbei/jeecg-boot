@@ -1,5 +1,8 @@
 package org.jeecg.modules.system.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 import org.jeecgframework.poi.excel.annotation.Excel;
@@ -20,11 +23,13 @@ import lombok.Data;
  */
 @Data
 @TableName("sys_category")
+@ApiModel(value="字典对象", description="字典对象")
 public class SysCategory implements Serializable {
     private static final long serialVersionUID = 1L;
     
 	/**主键*/
 	@TableId(type = IdType.UUID)
+	@ApiModelProperty(value = "主键")
 	private java.lang.String id;
 	/**父级节点*/
 	@Excel(name = "父级节点", width = 15)
