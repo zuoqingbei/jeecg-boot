@@ -1,6 +1,9 @@
 package org.jeecg.modules.system.controller;
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -61,6 +64,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @RestController
 @RequestMapping("/sys/dict")
+@Api(tags="字典")
 @Slf4j
 public class SysDictController {
 
@@ -85,6 +89,7 @@ public class SysDictController {
 		result.setResult(pageList);
 		return result;
 	}
+	
 
 	/**
 	 * @功能：获取树形字典数据
@@ -123,6 +128,7 @@ public class SysDictController {
 	 * @return
 	 */
 	@RequestMapping(value = "/getDictItems/{dictCode}", method = RequestMethod.GET)
+	@ApiOperation("获取字典数据")
 	public Result<List<DictModel>> getDictItems(@PathVariable String dictCode) {
 		log.info(" dictCode : "+ dictCode);
 		Result<List<DictModel>> result = new Result<List<DictModel>>();

@@ -53,7 +53,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @RestController
 @RequestMapping("/sys/category")
-@Api(tags="分类字典")
 @Slf4j
 public class SysCategoryController {
 	@Autowired
@@ -67,7 +66,6 @@ public class SysCategoryController {
 	 * @param req
 	 * @return
 	 */
-	@ApiOperation(value = "分页列表查询", notes = "分页列表查询")
 	@GetMapping(value = "/rootList")
 	public Result<IPage<SysCategory>> queryPageList(SysCategory sysCategory,
 									  @RequestParam(name="pageNo", defaultValue="1") Integer pageNo,

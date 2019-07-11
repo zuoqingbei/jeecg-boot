@@ -55,7 +55,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping("/sys/quartzJob")
 @Slf4j
-@Api(tags = "定时任务接口")
+/*@Api(tags = "定时任务接口")*/
 public class QuartzJobController {
 	@Autowired
 	private IQuartzJobService quartzJobService;
@@ -186,7 +186,7 @@ public class QuartzJobController {
 	 * @return
 	 */
 	@GetMapping(value = "/pause")
-	@ApiOperation(value = "暂停定时任务")
+	/*@ApiOperation(value = "暂停定时任务")*/
 	public Result<Object> pauseJob(@RequestParam(name = "jobClassName", required = true) String jobClassName) {
 		QuartzJob job = null;
 		try {
@@ -210,7 +210,7 @@ public class QuartzJobController {
 	 * @return
 	 */
 	@GetMapping(value = "/resume")
-	@ApiOperation(value = "恢复定时任务")
+	/*@ApiOperation(value = "恢复定时任务")*/
 	public Result<Object> resumeJob(@RequestParam(name = "jobClassName", required = true) String jobClassName) {
 		QuartzJob job = quartzJobService.getOne(new LambdaQueryWrapper<QuartzJob>().eq(QuartzJob::getJobClassName, jobClassName));
 		if (job == null) {
