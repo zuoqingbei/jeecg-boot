@@ -1,11 +1,10 @@
 <template>
     <div class="home-top-card">
         <div class="home-top-card--img">
-            <div class="bg"></div>
-            <div :class="['icon', imgClass]"></div>
+            <img :src="productObj.imgSrc" />
         </div>
-        <div class="home-top-card--title">{{ title }}</div>
-        <div class="home-top-card--content">{{ content }}</div>
+        <div class="home-top-card--title">{{ productObj.title }}</div>
+        <div class="home-top-card--content" v-html="Trim(productObj.content)"></div>
     </div>
 </template>
 
@@ -13,85 +12,51 @@
     export default {
         name: "HomeTopCard",
         props: {
-            imgClass: {
-                type: String,
+            productObj: {
+                type: Object,
                 required: true,
-                default: "icon1"
-            },
-            title: {
-                type: String,
-                required: false,
-                default: "--"
-            },
-            content: {
-                type: String,
-                required: false,
-                default: "--"
             }
         },
         data() {
             return {}
+        },
+        methods: {
+            Trim(str) {
+                return str.replace(/\n|\r\n/g,"<br/>");
+            }
         }
     }
 </script>
 
 <style lang="scss" scoped>
-    .home-top-card:hover .home-top-card--img .icon {
-        top: 0;
+    .home-top-card:hover {
+        box-shadow: 0 0 .3rem #e3edff;
     }
     .home-top-card {
-        width: 288px;
+        height: 5.18rem;
+        padding-top: .34rem;
         text-align: center;
-
+        color: #042259;
+        border-radius: 6px;
         .home-top-card--img {
-            position: relative;
-            width: 256px;
-            height: 271px;
-            margin: 0 auto;
-
-            div {
-                position: absolute;
-                top: 0;
-                width: 100%;
-                height: 100%;
-                background-size: 100%;
-            }
-
-            .bg {
-                width: 249px;
-                height: 239px;
-                background-image: url("../../../../assets/元素.png");
-                animation: bgMove 3s linear 0s alternate infinite;
-            }
-
-            .icon {
-                z-index: 10;
-                width: 256px;
-                height: 256px;
-                top: 15px;
-                transition: .3s all;
-            }
-
-            .icon1 {
-                background-image: url("../../../../assets/icon1.png");
-            }
-
-            .icon2 {
-                background-image: url("../../../../assets/icon2.png");
-            }
-
-            .icon3 {
-                background-image: url("../../../../assets/icon3.png");
+            display: flex;
+            width: 100%;
+            height: 1.12rem;
+            justify-content: center;
+            align-items: center;
+            img {
+                max-height: 1.12rem;
             }
         }
-
         .home-top-card--title {
             font-size: 24px;
-            line-height: 64px;
+            line-height: .7rem;
+            color: #042259;
         }
-
         .home-top-card--content {
+            padding: 0 .44rem;
             font-size: 16px;
+            line-height: .3rem;
             color: #647382;
         }
 

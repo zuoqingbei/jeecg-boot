@@ -13,6 +13,11 @@
     import BaseFooter from "./components/BaseFooter";
     export default {
         components: {BaseFooter, BaseHeader},
+        beforeMount() {
+            let html = document.getElementsByTagName("html")[0];
+            let oWidth = document.body.clientWidth || document.documentElement.clientWidth;
+            html.style.fontSize = oWidth / 1920 * 100 + "px";
+        },
         data () {
             return {
             }
