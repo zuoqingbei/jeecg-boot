@@ -1,4 +1,4 @@
-<template>
+q<template>
     <div class="app-solution">
         <BaseBanner/>
         <div class="solution-main">

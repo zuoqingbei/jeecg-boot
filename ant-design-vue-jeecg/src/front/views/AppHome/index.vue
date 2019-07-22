@@ -102,6 +102,13 @@
                     prevEl: '.swiper-button-prev'
                 }
             })
+            let partnerSwiper = new Swiper('.partner-swiper-container',{
+                speed: 1000,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                }
+            })
         },
         data() {
             return {
@@ -499,7 +506,26 @@
     }
 
     .home-partner {
-        
+        .home-partner-box {
+            h3,p {
+                text-align: center;
+            }
+            .partner-img {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                .partner-img-item {
+                    width: 3rem;
+                    height: 3rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img {
+                        width: 2.4rem;
+                    }
+                }
+            }
+        }
     }
 
     /*swiper左右按钮样式*/
