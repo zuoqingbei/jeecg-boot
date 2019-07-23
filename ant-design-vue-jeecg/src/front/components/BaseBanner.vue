@@ -1,6 +1,6 @@
 <template>
     <div class="base-banner">
-        <div class="swiper-container banner-swiper-container">
+        <div class="swiper-container banner-swiper-container" v-if="">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="item, index in bannerList" :key="index">
                     <div :class="[index == 0 ? 'banner-bg-0' : '', 'banner-item-bg']">
@@ -20,8 +20,6 @@
             <!--<div class="swiper-button-prev"></div>-->
             <!--<div class="swiper-button-next"></div>-->
         </div>
-        <!--<img v-if="baseBannerImg" class="base-banner&#45;&#45;img" src="@/assets/banner-home.png"/>-->
-        <!--<img v-else class="base-banner&#45;&#45;img" src="@/assets/banner-product.png"/>-->
     </div>
 </template>
 
@@ -84,6 +82,11 @@
                         imgSrc: require('@/assets/home/banner1.png')
                     },
                 ]
+            }
+        },
+        computed: {
+            currentPage() {
+                return this.$route.name
             }
         }
     }

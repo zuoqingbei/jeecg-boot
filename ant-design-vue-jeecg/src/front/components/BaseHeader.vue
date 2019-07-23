@@ -11,7 +11,10 @@
                     :key="index">
                     <span :class="[activeIndex===item.name ? 'active' : '']">{{ item.label }}</span>
                     <div class="header-nav-list" v-if="item.list">
-                        <span v-for="(item2, index2) in item.list" :key="index2">{{ item2 }}</span>
+                        <dl v-for="(item2, index2) in item.list" :key="index2">
+                            <dt>{{ item2.title }}</dt>
+                            <dd v-for="(item3, index3) in item2.itemList">{{ item3.name }}</dd>
+                        </dl>
                     </div>
                 </li>
             </ul>
@@ -27,9 +30,75 @@
                 showList: 0,
                 navArr: [
                     { name: 'home', label: '首页' },
-                    { name: 'product', label: '产品介绍', list: ['产品1', '产品2', '产品3'] },
-                    { name: 'solution', label: '解决方案' },
-                    { name: 'cases', label: '行业案例', list: ['产品1', '产品2', '产品3'] },
+                    {
+                        name: 'product',
+                        label: '产品介绍',
+                        list: [
+                            {
+                                title: '数据采集',
+                                itemList: [
+                                    { name: '数据填报平台', path: '' },
+                                    { name: '数据补录平台', path: '' },
+                                    { name: '智慧采集平台', path: '' }
+                                ]
+                            },
+                            {
+                                title: '数据处理',
+                                itemList: [
+                                    { name: '一站式数据处理平台', path: '' },
+                                    { name: 'ETS调度管理平台', path: '' }
+                                ]
+                            },
+                            {
+                                title: '数据治理',
+                                itemList: [
+                                    { name: '智能数据治理平台', path: '' },
+                                    { name: '元数据管理平台', path: '' },
+                                    { name: '数据质量管理平台', path: '' },
+                                    { name: '主数据管理平台', path: '' },
+                                    { name: '数据共享交换平台', path: '' }
+                                ]
+                            },
+                            {
+                                title: '数据分析',
+                                itemList: [
+                                    { name: '一站式数据分析平台-帆软BI', path: '' },
+                                    { name: '数据分析展示平台-永洪BI', path: '' },
+                                    { name: '自助式数据分析平台-豌豆BI', path: '' },
+                                    { name: '数据可视化平台-HL智屏', path: '' },
+                                    { name: '数据挖掘平台-HLDM', path: '' }
+                                ]
+                            },
+                        ]
+                    },
+                    {
+                        name: 'solution',
+                        label: '解决方案' ,
+                        list: [
+                            { title: '通用方案', itemList: [] },
+                            { title: '智慧航空', itemList: [] },
+                            { title: '智慧交通', itemList: [] },
+                            { title: '智慧金融', itemList: [] },
+                            { title: '智慧高校', itemList: [] },
+                            { title: '智能制造', itemList: [] },
+                            { title: '智慧客服', itemList: [] },
+                            { title: '智慧物联', itemList: [] },
+                        ]
+                    },
+                    {
+                        name: 'cases',
+                        label: '行业案例',
+                        list: [
+                            { title: '航空', itemList: [] },
+                            { title: '物流', itemList: [] },
+                            { title: '制造', itemList: [] },
+                            { title: '金融', itemList: [] },
+                            { title: '高校', itemList: [] },
+                            { title: '呼叫中心', itemList: [] },
+                            { title: '新能源', itemList: [] },
+                            { title: '电商', itemList: [] }
+                        ]
+                    },
                     { name: 'know', label: '了解海联' },
                     { name: 'about', label: '关于我们' }
                 ]
@@ -59,7 +128,7 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        height: .8rem;
+        height: .67rem;
         padding: 0 .96rem;
         line-height: .8rem;
         font-size: 18px;
@@ -78,7 +147,6 @@
             ul {
                 display: flex;
                 li {
-                    position: relative;
                     margin: 0 .3rem;
                     text-align: center;
                     span.active {
@@ -87,17 +155,32 @@
                     .header-nav-list {
                         position: absolute;
                         display: none;
-                        top: 100%;
+                        top: .67rem;
                         left: 0;
                         width: 100%;
-                        span {
-                            display: block;
-                            width: 100%;
-                            line-height: .5rem;
+                        background: #fdfdfd;
+                        border-top: 1px solid #e4e4ea;
+                        dl {
+                            padding: .17rem 0 .27rem;
+                            text-align: left;
+                            border-left: 1px solid #e4e4ea;
+                            &:last-child {
+                                border-right: 1px solid #e4e4ea;
+                            }
+                            dt {
+                                font-size: 18px;
+                                line-height: .56rem;
+                                color: #042259;
+                            }
+                            dd {
+                                font-size: 16px;
+                                line-height: .4rem;
+                                color: #2d3c59;
+                            }
                         }
                     }
                     &:hover .header-nav-list {
-                        display: block;
+                        display: flex;
                     }
                 }
             }
