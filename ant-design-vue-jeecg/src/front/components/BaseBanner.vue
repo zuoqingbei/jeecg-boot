@@ -3,12 +3,15 @@
         <div class="swiper-container banner-swiper-container">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="item, index in bannerList" :key="index">
-                    <div class="banner-item-bg">
-                        <div class="banner-item">
+                    <div :class="[index == 0 ? 'banner-bg-0' : '', 'banner-item-bg']">
+                        <div class="banner-item-content">
                             <h2>{{ item.title }}</h2>
                             <p>{{ item.content }}</p>
                             <span>了解更多</span>
                         </div>
+                        <template v-if="index != 0">
+                            <img :src="item.imgSrc" class="banner-item-img">
+                        </template>
                     </div>
                 </div>
             </div>
@@ -59,22 +62,26 @@
                         content: '海联科技\n' +
                             '一站式数据全生命周期产品与服务提供商\n' +
                             '提供数据采集、数据处理、数据治理、数据分析、运营监控产品与服务',
-                        name: ''
+                        name: '',
+                        imgSrc: ''
                     },
                     {
                         title: '企业统一大数据管理平台解决方案',
                         content: '基于海联大数据技术，协助企业构建数据仓库和数据分析应用平台，为决策者提供数据支持服务。并且通过整合各业务数据，构建经逻辑整合的、面向业务主题的综合应用数据仓库，支持高扩展性的辅助决策支持体系',
-                        name: ''
+                        name: '',
+                        imgSrc: require('@/assets/home/banner1.png')
                     },
                     {
                         title: '智慧客服解决方案',
                         content: '海联科技充分运用现代通信、大数据和人工智能技术，将自助语音、人工、知识信息资源紧密连接在一起，对资源进行统一协作和共享应用，进而优化服务流程，提高服务水平和效率，真正做到实时、便捷、智能、高效、可控。',
-                        name: ''
+                        name: '',
+                        imgSrc: require('@/assets/home/banner1.png')
                     },
                     {
                         title: '金融风险全面管控解决方案',
                         content: '海联科技充分运用大数据和人工智能技术手段，结合丰富的银行、保险以及其他金融机构的项目经验，构建风险数据模型和风险应用平台，全面提升金融机构风险管控能力。',
-                        name: ''
+                        name: '',
+                        imgSrc: require('@/assets/home/banner1.png')
                     },
                 ]
             }
@@ -85,15 +92,23 @@
 <style lang="scss" scoped>
     .base-banner {
         width: 100%;
-        height: 7.85rem;
+        height: 8.4rem;
         .banner-swiper-container {
             height: 100%;
             .banner-item-bg {
+                display: flex;
+                justify-content: space-between;
                 height: 100%;
+                padding-top: .8rem;
                 padding-left: .96rem;
-                .banner-item {
+                background: url("../../assets/home/banner-bg.jpg") center no-repeat;
+                &.banner-bg-0 {
+                    background: url("../../assets/home/banner.jpg") center no-repeat;
+                }
+                .banner-item-content {
+                    width: 7.8rem;
                     height: 100%;
-                    padding-top: 2.15rem;
+                    padding-top: 1.35rem;
                     color: #042259;
                     h2 {
                         font-size: 40px;
@@ -117,6 +132,9 @@
                         cursor: pointer;
                     }
                 }
+                .banner-item-img {
+
+                }
             }
         }
     }
@@ -133,5 +151,8 @@
     }
     .my-bullet-active {
         opacity: 1;
+    }
+    .base-banner .swiper-pagination-fraction,.base-banner .swiper-pagination-custom,.base-banner .swiper-container-horizontal > .swiper-pagination-bullets {
+        bottom: .6rem;
     }
 </style>

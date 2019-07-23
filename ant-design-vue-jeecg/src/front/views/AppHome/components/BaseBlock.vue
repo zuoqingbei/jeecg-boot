@@ -1,11 +1,11 @@
 <template>
-    <div class="home-block">
-        <div class="home-block--title">
-            <span class="english">{{ homeBlockTitle.titleEN }}</span>
-            <h2>{{ homeBlockTitle.title }}</h2>
+    <div class="base-block">
+        <div class="base-block--title">
+            <span class="english">{{ baseBlockTitle.titleEN }}</span>
+            <h2>{{ baseBlockTitle.title }}</h2>
             <span class="line-bottom"></span>
         </div>
-        <div class="home-block-content">
+        <div class="base-block-content">
             <slot/>
         </div>
     </div>
@@ -13,9 +13,9 @@
 
 <script>
     export default {
-        name: "HomeBlock",
+        name: "BaseBlock",
         props: {
-            homeBlockTitle: {
+            baseBlockTitle: {
                 type: Object,
                 required: true
             }
@@ -27,8 +27,8 @@
 </script>
 
 <style lang="scss" scoped>
-    .home-block {
-        .home-block--title {
+    .base-block {
+        .base-block--title {
             width: 100%;
             height: 2.02rem;
             padding-top: .6rem;
@@ -53,7 +53,7 @@
                 background: #073c9f;
             }
         }
-        .home-block-content {
+        .base-block-content {
             padding-bottom: 1rem;
         }
     }

@@ -57,6 +57,7 @@
         z-index: 99;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         width: 100%;
         height: .8rem;
         padding: 0 .96rem;
@@ -64,12 +65,11 @@
         font-size: 18px;
         .base-header--logo {
             display: flex;
-            width: 173px;
-            height: 100%;
+            height: .36rem;
             justify-content: center;
             align-items: center;
             img {
-                width: 100%;
+                height: 100%;
             }
         }
         .base-header--nav {

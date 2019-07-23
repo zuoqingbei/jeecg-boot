@@ -51,43 +51,38 @@
 
 <style lang="scss" scoped>
     .base-footer {
-        height: 532px;
-        color: #fff;
-        background: #0D1726;
-
+        height: 6.28rem;
+        color: #7f889e;
+        font-size: 16px;
+        line-height: 16px;
+        background: #f9fafe;
         .base-footer--top {
             height: 422px;
-            padding: 0 290px;
-            font-size: 14px;
-            line-height: 32px;
-            border-bottom: 1px solid #262E3B;
-
+            padding: .88rem .96rem 0;
+            border-bottom: 1px solid #d7ddef;
             .footer-title {
-                line-height: 136px;
+                color: #000;
+                font-weight: 600;
+                margin-bottom: .35rem;
             }
-
             .footer-about {
                 width: 266px;
                 margin-right: 200px;
             }
-
             .footer-solution {
                 width: 85px;
                 margin-right: 175px;
             }
-
             .footer-contact {
                 width: 285px;
                 margin-right: 200px;
             }
-
             .footer-weixin {
                 img {
                     width: 109px;
                 }
             }
         }
-
         .base-footer--bottom {
             padding: 0 290px;
             font-size: 16px;

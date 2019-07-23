@@ -3,14 +3,14 @@
         <BaseBanner/>
         <div class="margin">
             <div class="home-product">
-                <HomeBlock :homeBlockTitle="titleArr[0]" class="margin">
+                <BaseBlock :baseBlockTitle="titleArr[0]" class="margin">
                     <div class="home-product-box">
-                        <HomeTopCard class="home-product-item" v-for="(item, index) in productArr" :productObj="item" :key="index"/>
+                        <HomeTopCard class="home-product-item" v-for="(item, index) in productArr" :productObj="item" :class="'productActive' + index" :key="index"/>
                     </div>
-                </HomeBlock>
+                </BaseBlock>
             </div>
             <div class="home-solution">
-                <HomeBlock :homeBlockTitle="titleArr[1]" class="margin">
+                <BaseBlock :baseBlockTitle="titleArr[1]" class="margin">
                     <div class="swiper-container solution-swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="item, index in solutionArr" :key="index">
@@ -20,9 +20,8 @@
                                          :key="index2"
                                          :class="('home-solution-item' + index2)"
                                          @mouseenter="solutionEnter(index, index2)"
-                                         @mouseleave="solutionLeave()"
-                                         :style="{ background: item2.bgSrc }">
-                                        <img :src="solutionIndex == '' + index + index2 ? item2.iconSrc1 : item2.iconSrc2"/>
+                                         @mouseleave="solutionLeave()">
+                                        <img :src="solutionIndex == '' + index + index2 ? item2.iconSrc2 : item2.iconSrc1"/>
                                         <div class="solution-item-right" :class="solutionIndex == '' + index + index2 ? 'solution-item-right-big' : ''">
                                             <h3>{{ item2.title }}</h3>
                                             <p>{{ item2.content }}</p>
@@ -35,10 +34,10 @@
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-button-next"></div>
                     </div>
-                </HomeBlock>
+                </BaseBlock>
             </div>
             <div class="home-cases">
-                <HomeBlock :homeBlockTitle="titleArr[2]">
+                <BaseBlock :baseBlockTitle="titleArr[2]">
                     <div class="home-cases-box">
                         <div v-for="(item, index) in caseArr" :key="index" :class="[index < 3 ? 'cases-margin-b' : '', 'home-cases-item']">
                             <div class="cases-item-industry">{{ item.industry }}</div>
@@ -60,10 +59,10 @@
                             <span class="cases-item-line"></span>
                         </div>
                     </div>
-                </HomeBlock>
+                </BaseBlock>
             </div>
             <div class="home-partner">
-                <HomeBlock :homeBlockTitle="titleArr[3]">
+                <BaseBlock :baseBlockTitle="titleArr[3]">
                     <div class="swiper-container partner-swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide" v-for="item, index in partnerArr" :key="index">
@@ -78,22 +77,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="swiper-pagination"></div>
                     </div>
-                </HomeBlock>
+                </BaseBlock>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    import HomeBlock from './components/HomeBlock'
+    import BaseBlock from './components/BaseBlock'
     import HomeTopCard from './components/HomeTopCard'
-    import BaseBanner from '@/front/components/BaseBanner'
+    import BaseBanner from '../../components/BaseBanner'
     import Swiper from 'swiper'
 
     export default {
         name: 'AppHome',
-        components: { BaseBanner, HomeTopCard, HomeBlock },
+        components: { BaseBanner, HomeTopCard, BaseBlock },
         mounted() {
             var solutionSwiper = new Swiper('.solution-swiper-container', {
                 speed: 1000,
@@ -104,10 +104,11 @@
             })
             let partnerSwiper = new Swiper('.partner-swiper-container',{
                 speed: 1000,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev'
-                }
+                pagination: {
+                    el: '.swiper-pagination',
+                    bulletClass : 'my-bullet',
+                    bulletActiveClass: 'my-bullet-active-b',
+                },
             })
         },
         data() {
@@ -121,76 +122,82 @@
                 ],
                 productArr: [
                     {
-                        imgSrc: require('../../../assets/icon1.png'),
+                        imgSrc: require('../../../assets/home/数据采集icon.png'),
                         title: '数据采集',
-                        content: '数据填报平台\n' +
-                            '数据补录平台\n' +
-                            '智慧采集平台'
+                        list: [
+                            { name: '数据填报平台', path: ''},
+                            { name: '数据补录平台', path: ''},
+                            { name: '智慧采集平台', path: ''}
+                        ]
                     },
                     {
-                        imgSrc: require('../../../assets/icon1.png'),
+                        imgSrc: require('../../../assets/home/数据处理icon.png'),
                         title: '数据处理',
-                        content: '一站式数据处理平台\n' +
-                            'ETS调度管理平台'
+                        list: [
+                            { name: '一站式数据处理平台', path: ''},
+                            { name: 'ETS调度管理平台', path: ''}
+                        ]
                     },
                     {
-                        imgSrc: require('../../../assets/icon1.png'),
+                        imgSrc: require('../../../assets/home/数据治理icon.png'),
                         title: '数据治理',
-                        content: '智能数据治理平台\n' +
-                            '元数据管理平台\n' +
-                            '数据质量管理平台\n' +
-                            '主数据管理平台\n' +
-                            '数据共享交换平台'
+                        list: [
+                            { name: '智能数据治理平台', path: ''},
+                            { name: '元数据管理平台', path: ''},
+                            { name: '数据质量管理平台', path: ''},
+                            { name: '主数据管理平台', path: ''},
+                            { name: '数据共享交换平台', path: ''}
+                        ]
                     },
                     {
-                        imgSrc: require('../../../assets/icon1.png'),
+                        imgSrc: require('../../../assets/home/数据分析icon.png'),
                         title: '数据分析',
-                        content: '一站式数据分析平台--帆软BI\n' +
-                            '数据分析展示平台--永洪BI\n' +
-                            '自助式数据分析平台--豌豆BI\n' +
-                            '数据可视化平台--HL智屏\n' +
-                            '数据挖掘平台--HLDM'
+                        list: [
+                            { name: '一站式数据分析平台--帆软BI', path: ''},
+                            { name: '数据分析展示平台--永洪BI', path: ''},
+                            { name: '自助式数据分析平台--豌豆BI', path: ''},
+                            { name: '数据可视化平台--HL智屏', path: ''},
+                            { name: '数据挖掘平台--HLDM', path: ''}
+                        ]
                     },
                     {
-                        imgSrc: require('../../../assets/icon1.png'),
+                        imgSrc: require('../../../assets/home/运营监控icon.png'),
                         title: '运营监控',
-                        content: '系统管理\n' +
-                            '系统监控\n' +
-                            '数据监控\n' +
-                            '数据价值\n' +
-                            '服务监控'
+                        list: [
+                            { name: '系统管理', path: ''},
+                            { name: '系统监控', path: ''},
+                            { name: '数据监控', path: ''},
+                            { name: '数据价值', path: ''},
+                            { name: '服务监控', path: ''}
+                        ]
                     }
                 ],
                 solutionArr: [
                     [
                         {
-                            bgSrc: '#99f',
-                            iconSrc1: require('@assets/icon1.png'),
-                            iconSrc2: require('@assets/icon2.png'),
+                            iconSrc1: require('@/assets/home/物联网未选中icon.png'),
+                            iconSrc2: require('@/assets/home/物联网选中icon.png'),
                             title: '智慧金融解决方案',
                             content: '针对各类金融业务形态，海联产品将协助完成数据的搭建及监控，提高金融风险管控，用数据驱动资产积累。',
                             name: ''
                         },
                         {
-                            bgSrc: '#99f',
-                            iconSrc1: require('@assets/icon1.png'),
-                            iconSrc2: require('@assets/icon2.png'),
+                            iconSrc1: require('@/assets/home/物联网未选中icon.png'),
+                            iconSrc2: require('@/assets/home/物联网选中icon.png'),
                             title: '智慧金融解决方案',
                             content: '针对各类金融业务形态，海联产品将协助完成数据的搭建及监控，提高金融风险管控，用数据驱动资产积累。',
                             name: ''
                         },
                         {
-                            bgSrc: '#99f',
-                            iconSrc1: require('@assets/icon1.png'),
-                            iconSrc2: require('@assets/icon2.png'),
+                            iconSrc1: require('@/assets/home/物联网未选中icon.png'),
+                            iconSrc2: require('@/assets/home/物联网选中icon.png'),
                             title: '智慧金融解决方案',
                             content: '针对各类金融业务形态，海联产品将协助完成数据的搭建及监控，提高金融风险管控，用数据驱动资产积累。',
                             name: ''
                         },
                         {
-                            bgSrc: '#99f',
-                            iconSrc1: require('@assets/icon1.png'),
-                            iconSrc2: require('@assets/icon2.png'),
+                            iconSrc1: require('@/assets/home/物联网未选中icon.png'),
+                            iconSrc2: require('@/assets/home/物联网选中icon.png'),
                             title: '智慧金融解决方案',
                             content: '针对各类金融业务形态，海联产品将协助完成数据的搭建及监控，提高金融风险管控，用数据驱动资产积累。',
                             name: ''
@@ -198,33 +205,29 @@
                     ],
                     [
                         {
-                            bgSrc: '#99f',
-                            iconSrc1: require('@assets/icon1.png'),
-                            iconSrc2: require('@assets/icon2.png'),
+                            iconSrc1: require('@/assets/home/物联网未选中icon.png'),
+                            iconSrc2: require('@/assets/home/物联网选中icon.png'),
                             title: '智慧金融解决方案',
                             content: '针对各类金融业务形态，海联产品将协助完成数据的搭建及监控，提高金融风险管控，用数据驱动资产积累。',
                             name: ''
                         },
                         {
-                            bgSrc: '#99f',
-                            iconSrc1: require('@assets/icon1.png'),
-                            iconSrc2: require('@assets/icon2.png'),
+                            iconSrc1: require('@/assets/home/物联网未选中icon.png'),
+                            iconSrc2: require('@/assets/home/物联网选中icon.png'),
                             title: '智慧金融解决方案',
                             content: '针对各类金融业务形态，海联产品将协助完成数据的搭建及监控，提高金融风险管控，用数据驱动资产积累。',
                             name: ''
                         },
                         {
-                            bgSrc: '#99f',
-                            iconSrc1: require('@assets/icon1.png'),
-                            iconSrc2: require('@assets/icon2.png'),
+                            iconSrc1: require('@/assets/home/物联网未选中icon.png'),
+                            iconSrc2: require('@/assets/home/物联网选中icon.png'),
                             title: '智慧金融解决方案',
                             content: '针对各类金融业务形态，海联产品将协助完成数据的搭建及监控，提高金融风险管控，用数据驱动资产积累。',
                             name: ''
                         },
                         {
-                            bgSrc: '#99f',
-                            iconSrc1: require('@assets/icon1.png'),
-                            iconSrc2: require('@assets/icon2.png'),
+                            iconSrc1: require('@/assets/home/物联网未选中icon.png'),
+                            iconSrc2: require('@/assets/home/物联网选中icon.png'),
                             title: '智慧金融解决方案',
                             content: '针对各类金融业务形态，海联产品将协助完成数据的搭建及监控，提高金融风险管控，用数据驱动资产积累。',
                             name: ''
@@ -352,11 +355,28 @@
         .home-product-box {
             display: flex;
             .home-product-item {
-                flex: 1;
+                width: 3.36rem;
+                height: 5.2rem;
+                background-position: center;
+                background-repeat: no-repeat;
+                &.productActive0:hover {
+                    background-image: url("../../../assets/home/product0.png");
+                }
+                &.productActive1:hover {
+                    background-image: url("../../../assets/home/product1.png");
+                }
+                &.productActive2:hover {
+                    background-image: url("../../../assets/home/product2.png");
+                }
+                &.productActive3:hover {
+                    background-image: url("../../../assets/home/product3.png");
+                }
+                &.productActive4:hover {
+                    background-image: url("../../../assets/home/product4.png");
+                }
             }
         }
     }
-
     .home-solution {
         .home-solution-box {
             display: flex;
@@ -369,6 +389,7 @@
                 width: 7.2rem;
                 height: 3.2rem;
                 border-radius: 6px;
+                background-image: url('../../../assets/home/物联网未选中背景.png');
                 &.home-solution-item0,&.home-solution-item1 {
                     margin-bottom: .4rem;
                 }
@@ -416,7 +437,6 @@
             }
         }
     }
-
     .home-cases {
         .home-cases-box {
             display: flex;
@@ -504,11 +524,21 @@
             }
         }
     }
-
     .home-partner {
         .home-partner-box {
             h3,p {
                 text-align: center;
+            }
+            h3 {
+                font-size: 18px;
+                line-height: 18px;
+                color: #042259;
+                margin-bottom: .24rem;
+            }
+            p {
+                font-size: 16px;
+                line-height: 16px;
+                color: #2d3c59;
             }
             .partner-img {
                 display: flex;
@@ -521,7 +551,7 @@
                     align-items: center;
                     justify-content: center;
                     img {
-                        width: 2.4rem;
+                        max-width: 2.4rem;
                     }
                 }
             }
@@ -531,5 +561,11 @@
     /*swiper左右按钮样式*/
     .swiper-button-prev{
 
+    }
+</style>
+<style>
+    .my-bullet-active-b {
+        opacity: 1;
+        transform: scale(1.5);
     }
 </style>
