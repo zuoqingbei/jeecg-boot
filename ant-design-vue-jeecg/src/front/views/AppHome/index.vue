@@ -86,7 +86,7 @@
 </template>
 
 <script>
-    import BaseBlock from './components/BaseBlock'
+    import BaseBlock from '../../components/BaseBlock'
     import HomeTopCard from './components/HomeTopCard'
     import BaseBanner from '../../components/BaseBanner'
     import Swiper from 'swiper'
