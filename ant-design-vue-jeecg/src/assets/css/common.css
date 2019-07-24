@@ -70,7 +70,8 @@ html h2,
 html h3,
 html h4,
 html h5,
-html h6 {
+html h6,
+html p {
     margin-bottom: 0;
 }
 

@@ -151,9 +151,11 @@
                 li {
                     margin: 0 .3rem;
                     text-align: center;
-                    cursor: pointer;
-                    span.active {
-                        color: #073c9f
+                    span {
+                        cursor: pointer;
+                        &.active {
+                            color: #073c9f
+                        }
                     }
                     .header-nav-list {
                         position: absolute;

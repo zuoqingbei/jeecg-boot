@@ -55,7 +55,11 @@
                                 <h3>点击这里了解更多行业案例</h3>
                                 <p>点击这里了解更多行业案例，点击这里了解更多行业案点击这里了解更多行业案例点击这里了解更多行业案例，点击这里了解更多行业案例。</p>
                             </div>
-                            <img src="@assets/icon1.png" />
+                            <div class="case-img">
+                                <img src="@assets/home/案例图.png" />
+                                <img src="@assets/home/案例图.png" />
+                                <img src="@assets/home/案例图.png" />
+                            </div>
                             <span class="cases-item-line"></span>
                         </div>
                     </div>
@@ -529,6 +533,18 @@
                     height: .1rem;
                     background: #073c9f;
                     transition: .3s all;
+                }
+                &:last-child {
+                    .cases-item-industry {
+                        margin-top: 16%;
+                    }
+                    .case-img {
+                        display: flex;
+                        img {
+                            width: 33%;
+                            height: 33%;
+                        }
+                    }
                 }
             }
         }
