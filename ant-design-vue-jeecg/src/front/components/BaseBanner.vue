@@ -1,6 +1,6 @@
 <template>
     <div class="base-banner">
-        <div class="swiper-container banner-swiper-container" v-if="">
+        <div class="swiper-container banner-swiper-container" v-if="currentPage == 'home'">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="item, index in bannerList" :key="index">
                     <div :class="[index == 0 ? 'banner-bg-0' : '', 'banner-item-bg']">
@@ -20,39 +20,44 @@
             <!--<div class="swiper-button-prev"></div>-->
             <!--<div class="swiper-button-next"></div>-->
         </div>
+        <div class="banner-img" v-else>
+            <div class="banner-item-bg">
+                <div class="banner-item-content">
+                    <h2>{{ bannerObj.title }}</h2>
+                    <p>{{ bannerObj.content }}</p>
+                </div>
+                <img :src="bannerObj.imgSrc" class="banner-item-img">
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-    import Swiper from 'swiper';
+    import Swiper from 'swiper'
+
     export default {
-        name: "BaseBanner",
-        mounted(){
-            var bannerSwiper = new Swiper ('.banner-swiper-container', {
+        name: 'BaseBanner',
+        mounted() {
+            var bannerSwiper = new Swiper('.banner-swiper-container', {
                 loop: true,
-                // autoplay: {
-                //     disableOnInteraction: false,    // 用户操作swiper之后，是否禁止autoplay
-                // },
+                autoplay: {
+                    disableOnInteraction: false    // 用户操作swiper之后，是否禁止autoplay
+                },
                 pagination: {
                     el: '.swiper-pagination',
-                    bulletClass : 'my-bullet',
-                    bulletActiveClass: 'my-bullet-active',
+                    bulletClass: 'my-bullet',
+                    bulletActiveClass: 'my-bullet-active'
                 },
-                speed:1000,
-                // navigation: {
-                //     nextEl: ".swiper-button-next",
-                //     prevEl: ".swiper-button-prev"
-                // },
+                speed: 1000
             })
         },
         props: {
-            baseBannerImg: {
-                type: Boolean,
-                require: false,
-                default: true
+            bannerObj: {
+                type: Object,
+                require: false
             }
         },
-        data () {
+        data() {
             return {
                 bannerList: [
                     {
@@ -80,13 +85,22 @@
                         content: '海联科技充分运用大数据和人工智能技术手段，结合丰富的银行、保险以及其他金融机构的项目经验，构建风险数据模型和风险应用平台，全面提升金融机构风险管控能力。',
                         name: '',
                         imgSrc: require('@/assets/home/banner1.png')
-                    },
+                    }
                 ]
             }
         },
         computed: {
             currentPage() {
                 return this.$route.name
+            }
+        },
+        methods: {
+            //跳转
+            goPage(name, query) {
+                this.$router.push({
+                    name: name,
+                    query: query
+                })
             }
         }
     }
@@ -96,7 +110,7 @@
     .base-banner {
         width: 100%;
         height: 8.4rem;
-        .banner-swiper-container {
+        .banner-swiper-container,.banner-img {
             height: 100%;
             .banner-item-bg {
                 display: flex;
@@ -143,6 +157,7 @@
     }
 </style>
 <style>
+    /*swiper分页按钮样式*/
     .my-bullet {
         margin: 0 .13rem;
         background: #073c9f;
@@ -152,10 +167,12 @@
         border-radius: 100%;
         opacity: .16;
     }
+    /*swiper分页按钮选中样式*/
     .my-bullet-active {
         opacity: 1;
     }
-    .base-banner .swiper-pagination-fraction,.base-banner .swiper-pagination-custom,.base-banner .swiper-container-horizontal > .swiper-pagination-bullets {
+    /*swiper分页整体样式*/
+    .base-banner .swiper-pagination-fraction, .base-banner .swiper-pagination-custom, .base-banner .swiper-container-horizontal > .swiper-pagination-bullets {
         bottom: .6rem;
     }
 </style>

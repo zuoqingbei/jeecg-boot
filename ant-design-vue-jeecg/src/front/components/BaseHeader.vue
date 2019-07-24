@@ -7,13 +7,12 @@
             <ul>
                 <li
                     v-for="(item, index) in navArr"
-                    @click="goView(item.name, index)"
                     :key="index">
-                    <span :class="[activeIndex===item.name ? 'active' : '']">{{ item.label }}</span>
+                    <span :class="[activeIndex===item.name ? 'active' : '']" @click="goPage(item.name, index)">{{ item.label }}</span>
                     <div class="header-nav-list" v-if="item.list">
                         <dl v-for="(item2, index2) in item.list" :key="index2">
                             <dt>{{ item2.title }}</dt>
-                            <dd v-for="(item3, index3) in item2.itemList">{{ item3.name }}</dd>
+                            <dd v-for="(item3, index3) in item2.itemList" @click="goPage(item.path, item3.query)">{{ item3.name }}</dd>
                         </dl>
                     </div>
                 </li>
@@ -33,40 +32,41 @@
                     {
                         name: 'product',
                         label: '产品介绍',
+                        path: 'productDetail',
                         list: [
                             {
                                 title: '数据采集',
                                 itemList: [
-                                    { name: '数据填报平台', path: '' },
-                                    { name: '数据补录平台', path: '' },
-                                    { name: '智慧采集平台', path: '' }
+                                    { name: '数据填报平台', query: '' },
+                                    { name: '数据补录平台', query: '' },
+                                    { name: '智慧采集平台', query: '' }
                                 ]
                             },
                             {
                                 title: '数据处理',
                                 itemList: [
-                                    { name: '一站式数据处理平台', path: '' },
-                                    { name: 'ETS调度管理平台', path: '' }
+                                    { name: '一站式数据处理平台', query: '' },
+                                    { name: 'ETS调度管理平台', query: '' }
                                 ]
                             },
                             {
                                 title: '数据治理',
                                 itemList: [
-                                    { name: '智能数据治理平台', path: '' },
-                                    { name: '元数据管理平台', path: '' },
-                                    { name: '数据质量管理平台', path: '' },
-                                    { name: '主数据管理平台', path: '' },
-                                    { name: '数据共享交换平台', path: '' }
+                                    { name: '智能数据治理平台', query: '' },
+                                    { name: '元数据管理平台', query: '' },
+                                    { name: '数据质量管理平台', query: '' },
+                                    { name: '主数据管理平台', query: '' },
+                                    { name: '数据共享交换平台', query: '' }
                                 ]
                             },
                             {
                                 title: '数据分析',
                                 itemList: [
-                                    { name: '一站式数据分析平台-帆软BI', path: '' },
-                                    { name: '数据分析展示平台-永洪BI', path: '' },
-                                    { name: '自助式数据分析平台-豌豆BI', path: '' },
-                                    { name: '数据可视化平台-HL智屏', path: '' },
-                                    { name: '数据挖掘平台-HLDM', path: '' }
+                                    { name: '一站式数据分析平台-帆软BI', query: '' },
+                                    { name: '数据分析展示平台-永洪BI', query: '' },
+                                    { name: '自助式数据分析平台-豌豆BI', query: '' },
+                                    { name: '数据可视化平台-HL智屏', query: '' },
+                                    { name: '数据挖掘平台-HLDM', query: '' }
                                 ]
                             },
                         ]
@@ -110,9 +110,11 @@
             }
         },
         methods: {
-            goView(name, index) {
+            //跳转
+            goPage(name, query) {
                 this.$router.push({
-                    name: name
+                    name: name,
+                    query: query
                 })
             }
         }
@@ -149,19 +151,23 @@
                 li {
                     margin: 0 .3rem;
                     text-align: center;
+                    cursor: pointer;
                     span.active {
                         color: #073c9f
                     }
                     .header-nav-list {
                         position: absolute;
                         display: none;
+                        justify-content: flex-end;
                         top: .67rem;
                         left: 0;
                         width: 100%;
+                        padding-right: 2rem;
                         background: #fdfdfd;
                         border-top: 1px solid #e4e4ea;
                         dl {
-                            padding: .17rem 0 .27rem;
+                            width: 1.76rem;
+                            padding: .17rem 0 .27rem .2rem;
                             text-align: left;
                             border-left: 1px solid #e4e4ea;
                             &:last-child {
@@ -176,6 +182,7 @@
                                 font-size: 16px;
                                 line-height: .4rem;
                                 color: #2d3c59;
+                                cursor: pointer;
                             }
                         }
                     }
@@ -187,5 +194,4 @@
 
         }
     }
-
 </style>

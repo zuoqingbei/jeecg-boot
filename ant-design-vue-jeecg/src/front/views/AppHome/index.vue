@@ -95,6 +95,7 @@
         name: 'AppHome',
         components: { BaseBanner, HomeTopCard, BaseBlock },
         mounted() {
+            //方案轮播图
             var solutionSwiper = new Swiper('.solution-swiper-container', {
                 speed: 1000,
                 navigation: {
@@ -102,6 +103,7 @@
                     prevEl: '.swiper-button-prev'
                 }
             })
+            //客户轮播图
             let partnerSwiper = new Swiper('.partner-swiper-container',{
                 speed: 1000,
                 pagination: {
@@ -114,12 +116,14 @@
         data() {
             return {
                 solutionIndex: '',
+                //标题
                 titleArr: [
                     { title: '产品介绍', titleEN: 'PRODUCT DESCRIPTION' },
                     { title: '解决方案', titleEN: 'INDUSTRY SOLUTIONS' },
                     { title: '行业案例', titleEN: 'INDUSTRY CASE' },
                     { title: '合作客户', titleEN: 'OUR CUSTOMERS' }
                 ],
+                //产品
                 productArr: [
                     {
                         imgSrc: require('../../../assets/home/数据采集icon.png'),
@@ -172,6 +176,7 @@
                         ]
                     }
                 ],
+                //方案
                 solutionArr: [
                     [
                         {
@@ -234,43 +239,45 @@
                         }
                     ]
                 ],
+                //案例
                 caseArr: [
                     {
                         name: '',
                         industry: '制造业',
                         title: '海尔供应商绩效评价系统',
                         content: '根据供应商分类和绩效确定差异化的产品及合作策略，从T（技术）Q（质量）R（响应）D（配送）C（成本）五个维度对供应商进行全方位的绩效管理，进一步提升企业对供应商精细化管控能力，提升效率与价值。',
-                        imgSrc: require('@assets/icon1.png'),
+                        imgSrc: require('@assets/home/案例图.png'),
                     },
                     {
                         name: '',
                         industry: '航空行业',
                         title: '青岛航空数据仓库项目',
                         content: '青岛航空内部各系统间相对较为独立，数据分散，产生信息孤岛，各部门获取的信息比较片面的，因此需要借助大数据技术手段，将机构各系统数据集中存储，统一管理。实现跨系统数据共享，解决信息孤岛，提升数据质量，为各层级用户提供统一的数据服务。',
-                        imgSrc: require('@assets/icon1.png'),
+                        imgSrc: require('@assets/home/案例图.png'),
                     },
                     {
                         name: '',
                         industry: '呼叫中心行业',
                         title: '日日顺乐信LeDC数据中心项目',
                         content: '乐信HIC大数据平台2013年建设，随着业务发展，原有平台处理效率及可靠性不能满足业务需求，在此基础上，借助海联产品及技术服务重建大数据平台，批量数据处理就挖掘的时效达到分钟级别，实时数据处理达到秒级响应，大大提升了业务处理的能力。',
-                        imgSrc: require('@assets/icon1.png'),
+                        imgSrc: require('@assets/home/案例图.png'),
                     },
                     {
                         name: '',
                         industry: '金融行业',
                         title: '青岛清算中心地方金融监管预警平台',
                         content: '青岛场外市场清算中心作为全国首家服务于场外市场的独立第三方清算机构，作为全国最影响力且接入现货交易场所最多的清算场所，建设一具备高效、全面、直观的风险监控平台以实时展示各交易市场运营状态、参数变动、异常操作等情况正是对监管机构和投资主体负责的体现。',
-                        imgSrc: require('@assets/icon1.png'),
+                        imgSrc: require('@assets/home/案例图.png'),
                     },
                     {
                         name: '',
                         industry: '征信行业',
                         title: '联信征信报告系统项目',
                         content: '随着经济市场化程度的不断加深发展，加快企业和个人征信体系的建设已成为社会共识。在此背景下，联信集团借助海联科技的技术手段，依法采集、客户记录其信用信息，对外提供信用信息服务，为联信搭建了一个信用信息共享系统，以便能够快速识别低信用客户，规避借贷欺诈风险。',
-                        imgSrc: require('@assets/icon1.png'),
+                        imgSrc: require('@assets/home/案例图.png'),
                     }
                 ],
+                //客户
                 partnerArr: [
                     {
                         title: '金融行业',
@@ -334,12 +341,14 @@
             }
         },
         methods: {
+            //跳转
             goPage(name, query) {
                 // this.$route.push({
                 //     name: name,
                 //     query: query
                 // })
             },
+            //方案鼠标滑过
             solutionEnter(index1, index2) {
                 this.solutionIndex = '' + index1 + index2;
             },
@@ -559,11 +568,25 @@
     }
 
     /*swiper左右按钮样式*/
-    .swiper-button-prev{
-
+    .swiper-button-prev,.swiper-button-next{
+        width: 1.08rem;
+        height: 1.08rem;
+        top: 45%;
+        background: url("../../../assets/home/r-on.png") center no-repeat;
+    }
+    .swiper-button-prev {
+        background-image: url("../../../assets/home/l-on.png");
+    }
+    .swiper-button-prev.swiper-button-disabled, .swiper-button-next.swiper-button-disabled {
+        opacity: 1;
+        background-image: url("../../../assets/home/r.png");
+    }
+    .swiper-button-prev.swiper-button-disabled {
+        background-image: url("../../../assets/home/l.png");
     }
 </style>
 <style>
+    /*合作客户swiper分页选中样式*/
     .my-bullet-active-b {
         opacity: 1;
         transform: scale(1.5);

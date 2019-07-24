@@ -1,28 +1,6 @@
 <template>
     <div class="app-product">
         <BaseBanner :bannerObj="bannerObj"/>
-        <ul class="product-nav">
-            <li v-for="item, index in produceNav" :key="index">{{ item }}</li>
-        </ul>
-        <div class="margin-product">
-            <div class="app-product--title">
-                大数据产品总览
-            </div>
-            <AppProductCard :product-data="productArr[0]" />
-            <AppProductCard :product-data="productArr[1]" />
-        </div>
-        <div class="app-product--info">
-            <div class="margin-product">
-                与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元与现实
-                的位置等与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、
-                元素的位置与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；在界面中一致：所有的元素和结构需保持一致，比如：设计样元素的位置等与
-                现实生活。
-            </div>
-            <div class="arrow"></div>
-        </div>
-        <div class="margin-product">
-            <AppProductCard :product-data="productArr[2]" />
-        </div>
     </div>
 </template>
 
@@ -30,7 +8,7 @@
     import BaseBanner from "@/front/components/BaseBanner";
     import AppProductCard from "./components/AppProductCard";
     export default {
-        name: 'AppProduct',
+        name: 'ProductDetail',
         components: {AppProductCard, BaseBanner},
         data () {
             return {
