@@ -123,7 +123,7 @@
 
 <style lang="scss" scoped>
     .base-header {
-        position: absolute;
+        position: fixed;
         top: 0;
         z-index: 99;
         display: flex;
