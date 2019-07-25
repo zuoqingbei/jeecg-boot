@@ -1,6 +1,7 @@
 <template>
     <div class="app-know">
-        <BaseBanner :bannerObj="bannerObj"/>
+        <div class="banner">
+        </div>
         <div class="news margin">
             <div class="news-title">新闻动态</div>
             <div class="news-item" v-for="item, index in newsArr" :key="index">
@@ -24,16 +25,13 @@
 </template>
 
 <script>
-    import BaseBanner from "@/front/components/BaseBanner";
     export default {
         name: 'AppKnow',
-        components: {BaseBanner},
         data () {
             return {
                 bannerObj: {
                     title: '',
                     content: '',
-                    imgSrc: ''
                 },
                 newsArr: [
                     {
@@ -114,14 +112,23 @@
 </script>
 
 <style lang="scss" scoped>
+    .banner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2.56rem;
+        padding-top: .67rem;
+        background: url("../../../assets/home/banner-bg.jpg") center no-repeat;
+    }
     .news {
+        position: relative;
         width: 12rem;
-        padding: 0 1rem;
-        margin: -5.84rem auto 1rem;
+        padding: .5rem 1rem 0;
+        margin: 1.5rem auto 1rem;
         background: #fff;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.1), 0 6px 18px 0 rgba(0,0,0,.12);
         .news-title {
-            line-height: 2rem;
             color: #042259;
             font-size: 40px;
             text-align: center;
@@ -153,12 +160,13 @@
                     width: calc(100% - 1.5rem);
                     padding-right: .5rem;
                     h3 {
-                        width: 100%;
+                        width: 80%;
                         height: 24px;
                         margin-bottom: .2rem;
                         font-size: 24px;
                         line-height: 24px;
-                        color: #042259
+                        color: #042259;
+                        cursor: pointer;
                     }
                     p {
                         font-size: 16px;
