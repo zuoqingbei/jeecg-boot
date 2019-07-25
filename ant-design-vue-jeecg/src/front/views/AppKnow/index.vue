@@ -115,10 +115,10 @@
 
 <style lang="scss" scoped>
     .news {
-        margin-top: -5.84rem;
-        background: #fff;
+        width: 12rem;
         padding: 0 1rem;
-        margin-bottom: 1rem;
+        margin: -5.84rem auto 1rem;
+        background: #fff;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.1), 0 6px 18px 0 rgba(0,0,0,.12);
         .news-title {
             line-height: 2rem;
@@ -146,7 +146,7 @@
             }
             .news-r {
                 display: flex;
-                width: calc(100% - 1rem);
+                width: calc(100% - 1.5rem);
                 padding: .5rem 0;
                 border-bottom: 1px solid rgba(0,0,0,.1);
                 .news-text {
