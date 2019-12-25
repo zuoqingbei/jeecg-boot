@@ -4,7 +4,9 @@
             <img :src="productObj.imgSrc" />
         </div>
         <div class="home-top-card--title">{{ productObj.title }}</div>
-        <div class="home-top-card--content" v-html="Trim(productObj.content)"></div>
+        <ul class="home-top-card--content">
+            <li v-for="item, index in productObj.list" :key="index">{{ item.name }}</li>
+        </ul>
     </div>
 </template>
 
@@ -33,7 +35,6 @@
         box-shadow: 0 0 .3rem #e3edff;
     }
     .home-top-card {
-        height: 5.18rem;
         padding-top: .34rem;
         text-align: center;
         color: #042259;
@@ -49,15 +50,20 @@
             }
         }
         .home-top-card--title {
+            margin-bottom: .09rem;
             font-size: 24px;
             line-height: .7rem;
             color: #042259;
         }
         .home-top-card--content {
             padding: 0 .44rem;
-            font-size: 16px;
-            line-height: .3rem;
-            color: #647382;
+            font-size: 18px;
+            line-height: .18rem;
+            color: #8caeed;
+            li {
+                margin-bottom: .4rem;
+                cursor: pointer;
+            }
         }
 
     }

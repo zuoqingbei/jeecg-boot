@@ -1,6 +1,6 @@
 <template>
     <div class="app-product">
-        <BaseBanner :base-banner-img="baseBannerImg" />
+        <BaseBanner :bannerObj="bannerObj"/>
         <ul class="product-nav">
             <li v-for="item, index in produceNav" :key="index">{{ item }}</li>
         </ul>
@@ -34,7 +34,11 @@
         components: {AppProductCard, BaseBanner},
         data () {
             return {
-                baseBannerImg: false,
+                bannerObj: {
+                    title: '企业统一大数据管理平台解决方案',
+                    content: '基于海联大数据技术，协助企业构建数据仓库和数据分析应用平台，为决策者提供数据支持服务。并且通过整合各业务数据，构建经逻辑整合的、面向业务主题的综合应用数据仓库，支持高扩展性的辅助决策支持体系',
+                    imgSrc: require('@/assets/home/banner1.png')
+                },
                 produceNav: ["产品1", "产品1", "产品1", "产品1", "产品1", "产品1", "产品1", "产品1"],
                 productArr: [
                     {

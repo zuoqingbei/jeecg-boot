@@ -1,5 +1,6 @@
 import AppHome from '@/front/views/AppHome'
 import AppProduct from '@/front/views/AppProduct'
+import ProductDetail from '@/front/views/AppProduct/ProductDetail'
 import AppSolution from '@/front/views/AppSolution'
 import AppCases from '@/front/views/AppCases'
 import AppKnow from '@/front/views/AppKnow'
@@ -20,6 +21,11 @@ export const frontRouterMap = [
                 path: '/hl/product',
                 name: 'product',
                 component: AppProduct
+            },
+            {
+                path: '/hl/product/productDetail',
+                name: 'productDetail',
+                component: ProductDetail,
             },
             {
                 path: '/hl/solution',
